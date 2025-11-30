@@ -4,7 +4,7 @@ google-api-python-client
 google-auth
 google-auth-httplib2
 google-auth-oauthlib
-huggingface_hub
+openai
 python-dotenv
 serpapi
 pandas
