@@ -1,25 +1,23 @@
 import os
-from serpapi import GoogleSearch
+import serpapi
 from dotenv import load_dotenv
 
 load_dotenv()
 
 def search_hackathons(query="hackathons", num_results=10):
     """
-    Searches for hackathons using SerpApi.
+    Searches for hackathons using SerpApi (new library).
     """
     api_key = os.getenv("SERPAPI_KEY")
     if not api_key:
         raise ValueError("SERPAPI_KEY not found in environment variables")
 
-    params = {
+    client = serpapi.Client(api_key=api_key)
+    results = client.search({
+        "engine": "google",
         "q": query,
-        "api_key": api_key,
         "num": num_results
-    }
-
-    search = GoogleSearch(params)
-    results = search.get_dict()
+    })
     
     links = []
     if "organic_results" in results:
